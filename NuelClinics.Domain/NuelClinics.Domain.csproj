@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1EDC1A19-7A3C-43D7-A8EE-1CAC178E32F8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NuelClinics.Domain</RootNamespace>
+    <AssemblyName>NuelClinics.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAppointmentRepository.cs" />
+    <Compile Include="Abstract\IDepartmentRepository.cs" />
+    <Compile Include="Abstract\IEmployeeRepository.cs" />
+    <Compile Include="Abstract\IEmployeeTypeRepository.cs" />
+    <Compile Include="Abstract\IServiceRepository.cs" />
+    <Compile Include="Concrete\EFAppointmentRepository.cs" />
+    <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFDepartmentRepository.cs" />
+    <Compile Include="Concrete\EFEmployeeRepository.cs" />
+    <Compile Include="Concrete\EFEmployeeTypeRepository.cs" />
+    <Compile Include="Concrete\EFServiceRepository.cs" />
+    <Compile Include="Entities\Appointment.cs" />
+    <Compile Include="Entities\Department.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\EmployeeType.cs" />
+    <Compile Include="Entities\Patient.cs" />
+    <Compile Include="Entities\Pharmaceutical.cs" />
+    <Compile Include="Entities\Service.cs" />
+    <Compile Include="Entities\Ward.cs" />
+    <Compile Include="Migrations\202204220218114_InitialCreate.cs" />
+    <Compile Include="Migrations\202204220218114_InitialCreate.designer.cs">
+      <DependentUpon>202204220218114_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204221507053__PatientDepartmentWard.cs" />
+    <Compile Include="Migrations\202204221507053__PatientDepartmentWard.designer.cs">
+      <DependentUpon>202204221507053__PatientDepartmentWard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204251052289__FinalCreate.cs" />
+    <Compile Include="Migrations\202204251052289__FinalCreate.designer.cs">
+      <DependentUpon>202204251052289__FinalCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204261320345__EmployeeDateOfBirth.cs" />
+    <Compile Include="Migrations\202204261320345__EmployeeDateOfBirth.designer.cs">
+      <DependentUpon>202204261320345__EmployeeDateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204261409331__EmployeeDateOfBirth1.cs" />
+    <Compile Include="Migrations\202204261409331__EmployeeDateOfBirth1.designer.cs">
+      <DependentUpon>202204261409331__EmployeeDateOfBirth1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204291019171__Appointment.cs" />
+    <Compile Include="Migrations\202204291019171__Appointment.designer.cs">
+      <DependentUpon>202204291019171__Appointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204302354343__Appointment1.cs" />
+    <Compile Include="Migrations\202204302354343__Appointment1.designer.cs">
+      <DependentUpon>202204302354343__Appointment1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205051704270__EmployeeUpdate.cs" />
+    <Compile Include="Migrations\202205051704270__EmployeeUpdate.designer.cs">
+      <DependentUpon>202205051704270__EmployeeUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="NuelClinicUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <Version>2.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.Mvc">
+      <Version>5.2.8</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204220218114_InitialCreate.resx">
+      <DependentUpon>202204220218114_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204221507053__PatientDepartmentWard.resx">
+      <DependentUpon>202204221507053__PatientDepartmentWard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204251052289__FinalCreate.resx">
+      <DependentUpon>202204251052289__FinalCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204261320345__EmployeeDateOfBirth.resx">
+      <DependentUpon>202204261320345__EmployeeDateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204261409331__EmployeeDateOfBirth1.resx">
+      <DependentUpon>202204261409331__EmployeeDateOfBirth1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204291019171__Appointment.resx">
+      <DependentUpon>202204291019171__Appointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204302354343__Appointment1.resx">
+      <DependentUpon>202204302354343__Appointment1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205051704270__EmployeeUpdate.resx">
+      <DependentUpon>202205051704270__EmployeeUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

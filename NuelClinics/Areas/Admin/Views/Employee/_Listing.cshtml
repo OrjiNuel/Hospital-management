@@ -1,0 +1,68 @@
+﻿@model NuelClinics.Areas.Admin.Models.EmployeeListViewModel
+
+@if (Model != null && Model.Employees != null && Model.Employees.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Email</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">EmployeeType</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Employees != null)
+            {
+                foreach (var employee in Model.Employees)
+                {
+                    <tr>
+                        <td>
+                            @employee.Name
+                        </td>
+                        <td>
+                            @employee.Age
+                        </td>
+                        <td>
+                            @employee.Date_Of_Birth
+                        </td>
+                        <td>
+                            @employee.Phone
+                        </td>
+                        <td>
+                            @employee.Address
+                        </td>
+                        <td>
+                            @employee.Email
+                        </td>
+                        <td>
+
+                            @employee.Start_Date
+                        </td>
+                        <td>
+                            @foreach (var emyype in Model.EmployeeTypes)
+                            {
+                                if (employee.EmployeeTypeId == emyype.ID)
+                                {
+                                    @emyype.TypeName
+                                }
+                            }
+
+                        </td>
+
+                        <td>
+                            <button data-href="@Url.Action("Action", "Employee", new { ID = employee.ID })" type="button" class="data-btn btn btn-success" data-bs-toggle="modal" data-bs-target="#actionModal">Edit</button>
+                            <button data-href="@Url.Action("Delete", "Employee", new { id = employee.ID })" type="button" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal">Delete</button>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+}

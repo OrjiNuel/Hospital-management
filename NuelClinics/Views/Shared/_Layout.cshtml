@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - NuelClinics</title>
+
+    <link rel="shortcut icon" href="assets/images/fav.jpg">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="logo">
+                    <h1><a href="#"><span>Nuel Clinics & Hospitals</span></a></h1>
+                </div>
+                <div class="hidden-xs">
+                    <h4>Emergancy Call</h4>
+                    <p>09047966793</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                @*<div class="account">
+                    <ul>
+                        <li>
+                            <div class="hidden-xs">
+                                <h4>Emergancy Call</h4>
+                                <p>09047966793</p>
+                            </div>
+
+                            <div class="visible-xs">
+
+                                    <p>08131930335</p>
+                            </div>
+
+                        </li>
+                    </ul>
+
+                </div>*@
+
+                
+
+               
+
+            </div>
+        </div>
+        <header id="menu-jk">
+
+            <div id="nav-head" class="header-nav">
+                <div class="container">
+                    <div class="row">
+                        @*<div class="col-lg-2 col-md-3 no-padding col-sm-12 nav-img">
+                                <img src="assets/images/logo.jpg" alt="">
+                                <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-md-none small-menu fa-bars"></i></a>
+                            </div>*@
+                        <div id="menu" class="col-lg-8 col-md-9 d-none d-md-block nav-item">
+                            <ul>
+                                <li><a href="@Url.Action("Index", "Home", new { @area= ("")})">Home</a></li>
+                                <li><a href="#services">Services</a></li>
+                                <li><a href="@Url.Action("About", "Home", new { @area= ("")})">About Us</a></li>
+                                <li><a href="#contact_us">Contact Us</a></li>
+                            </ul>
+                            <ul>
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Dashboard")">Dashboard</a></li>
+                                }
+                            </ul>
+                            @Html.Partial("_LoginPartial")
+                        </div>
+                        <div class="col-sm-2 d-none d-lg-block appoint">
+                            @Html.ActionLink("Book an Appointment", "Create", "", new { @class = "btn btn-default animated bounceInUp" })
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            
+            <div class="copy">
+                <div class="container">
+                    <p>&copy; @DateTime.Now.Year - NuelClinic & Hospitals</p>
+                    <span>
+                        <a><i class="fab fa-github"></i></a>
+                        <a><i class="fab fa-google-plus-g"></i></a>
+                        <a><i class="fab fa-pinterest-p"></i></a>
+                        <a><i class="fab fa-twitter"></i></a>
+                        <a><i class="fab fa-facebook-f"></i></a>
+                    </span>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+<script>
+    $(".data-btn").click(function () {
+        $.ajax({
+            url: $(this).attr("data-href"),
+            type: "get",
+        })
+        .done(function (response) {
+            $("#homebtn").html(response);
+        });
+    });
+</script>

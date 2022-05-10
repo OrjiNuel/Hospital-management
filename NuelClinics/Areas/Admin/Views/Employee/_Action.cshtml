@@ -1,0 +1,102 @@
+﻿@model NuelClinics.Areas.Admin.Models.EmployeeActionViewModel
+
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">
+                @if (Model.ID > 0)
+                {
+                    <span>Edit Employee</span>
+                }
+                else
+                {
+                    <span>Create New Employee</span>
+                }
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="actionForm">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <div class="form-group">
+                    <label>Accomodation Type</label>
+                    <select class="form-control" name="EmployeeTypeId">
+                        @if (Model.EmployeeTypes != null)
+                        {
+                            foreach (var empType in Model.EmployeeTypes)
+                            {
+                                <option value="@empType.ID">
+                                    @empType.TypeName
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" name="Name" placeholder="Enter Employee Name." value="@Model.Name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="form-control" name="Email" placeholder="Enter Email Address." value="@Model.Email">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input class="form-control" name="Address" placeholder="Enter Address." value="@Model.Address">
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input class="form-control" name="Date_of_Birth" placeholder="Enter Date of Birth." value="@Model.Date_Of_Birth">
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input class="form-control" name="Age" placeholder="Enter Age." value="@Model.Age">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input class="form-control" name="Phone" placeholder="Enter Phone." value="@Model.Phone">
+                </div>
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input class="form-control" name="Start_Date" placeholder="Enter Start Date." value="@Model.Start_Date">
+                </div>
+            </form>
+
+            <div class="errorDiv">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="actionButton" type="button" class="btn btn-primary"><i class="fa-solid fa-floppy-disk mr-1"></i>Save</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark mr-1"></i>Close</button>
+        </div>
+    </div>
+}
+
+
+<script>
+    $("#actionButton").click(function () {
+        $.ajax({
+            url:  '@Url.Action("Action", "Employee")',
+            type: "post",
+            data: $("#actionForm").serialize()
+        })
+        .done(function (response) {
+            if (response.Success)
+            {
+                location.reload();
+            }
+            else
+            {
+                $(".errorDiv").html(response.Message);
+            }
+        });
+    });
+</script>
+
+
+
