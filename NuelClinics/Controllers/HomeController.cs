@@ -61,7 +61,7 @@ namespace NuelClinics.Controllers
             {
 
                 string useremail = "orjiemmanueleni@gmail.com";
-                string senderpassword = "evkvtmonpsmemycc";
+                string senderpassword = "";
 
                 var send = new EmailPayload
                 {
