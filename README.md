@@ -1,2 +1,2 @@
-# NuelClinics
-Nuel Clinics Code Project
+# Hospital-Management
+A hospital management system using .Net C-sharp 
